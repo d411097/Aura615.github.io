@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>VOTE</title>
+        <link rel="stylesheet" href="home.css" />
+        <script type = "text/javascript" src="contract.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav>
+            <ul class="home-tool">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="voter.html">VOTE</a></li>
+                <li><a href="manager.html">MANGER</a></li>
+                </ul>
+        </nav>
+
+        <div id="contract_address">
+        <p>合約地址:<input id="address" type="text" />
+            <button onclick="Address()"> 確定</button>
+        </p>
+        </div>
+
+        <div id="search">
+            <h3>查詢參選人</h3>
+            <p>輸入參選人編號:<input id="number" type="text"/>
+                <button onclick="Check()">查詢</button>
+            </p>
+            <div id="candidate"></div>
+            <h3>投票</h3>
+            <p>輸入參選人編號:<input id="number_vote" type="text"/>
+                <button onclick="Vote()">投票</button>
+            </p>
+        </div>
+        <div id ="wait">
+            <h3>投票中請靜待結果</h3>
+        </div>
+
+        <script>
+            $( document ).ready(function() {
+                $( "#search" ).hide();
+            });
+            $( document ).ready(function() {
+                $( "#wait" ).hide();
+            });
+            function Address(){
+                $( "#search" ).show();
+                $( "#contract_address" ).hide();
+            }
+            function Check(){
+            }
+            function Vote(){
+                $( "#search" ).hide();
+                $( "#wait" ).show();
+            }
+        </script>
+    </body>
+</html>
