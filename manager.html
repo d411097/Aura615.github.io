@@ -368,10 +368,9 @@
           var contractAddress;
           var txhash;
           var web3 = new Web3();
-
-                $( document ).ready(function() {
-                    $( "#manager_action" ).hide();
-                });
+          $( document ).ready(function() {
+            $( "#manager_action" ).hide();
+          });
 
           if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
@@ -379,31 +378,37 @@
             alert('initial failed');
           }
 
-    // 			window.addEventListener('load', async () => {
-    // 				if (window.ethereum) {
-    // 					window.web3 = new Web3(ethereum);
-    // 					try {
-    // 						await ethereum.enable();
-    // 						accountaddress = web3.givenProvider.selectedAddress;
-    // 					} catch (error) {
-    // 						//error
-    // 					}
-    // 				}
-    // 				else if (window.web3) {
-    // 						window.web3 = new Web3(web3.currentProvider);
-    // 						web3.eth.sendTransaction({/* ... */});
-    // 				}
-    // 				else {
-    // 						console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-    // 				}
-    // 			});
+	window.addEventListener('load', async () => {
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			try {
+				document.getElementById("address2").innerHTML=11111;
+				await ethereum.enable();
+				document.getElementById("address2").innerHTML=11111;
+				accountaddress = web3.givenProvider.selectedAddress;
+				document.getElementById("address2").innerHTML=11111;
+			} catch (error) {
+				//error
+				document.getElementById("address2").innerHTML=22222;
+			}
+		}
+		else if (window.web3) {
+			document.getElementById("address2").innerHTML=33333;
+			window.web3 = new Web3(web3.currentProvider);
+			document.getElementById("address2").innerHTML=33333;
+			web3.eth.sendTransaction({/* ... */});
+		}
+		else {
+				console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+		}
+	});
 
             function Deploy(){
                 // var constructor_param = document.getElementById('name');
-                web3.eth.getAccounts(function (err, addresses) {
-    				        const address = addresses[0];
-    				        web3.eth.defaultAccount = address;
-				        });
+		web3.eth.getAccounts(function (err, addresses) {
+    			const address = addresses[0];
+			web3.eth.defaultAccount = address;
+	     	});
                 var defaultAccount = web3.eth.defaultAccount;
 				
                 // document.getElementById("45").innerHTML=defaultAccont;
