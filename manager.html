@@ -376,6 +376,7 @@
 	
           $( document ).ready(function() {
             $( "#manager_action" ).hide();
+	    console.log('?');
           });
 
 //           if (typeof web3 !== 'undefined') {
@@ -403,7 +404,7 @@
 			console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
 		}
 	});
-
+	
             function Deploy(){
                 ballotContract.deploy({
                     	data: bytecode,
