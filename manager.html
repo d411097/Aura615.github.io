@@ -405,6 +405,7 @@
 	});
 
             function Deploy(){
+		console.log('wait');
                 ballotContract.deploy({
                     	data: bytecode,
                     	arguments: [name],
