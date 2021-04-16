@@ -428,8 +428,6 @@
                 .on('receipt', (receipt) => {
                     	console.log("DONE" + receipt.contractAddress);
                     	contractAddress = receipt.contractAddress;
-			alert(contractAddress);
-			document.getElementById("address").innerHTML=contractAddress;
                     	console.log(contractAddress);
             	})
             	.on('confirmation', (confirmationNumber, receipt) => { 
