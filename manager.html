@@ -405,7 +405,6 @@
 	});
 
             function Deploy(){
-		console.log('wait');
                 ballotContract.deploy({
                     	data: bytecode,
                     	arguments: [name],
@@ -427,6 +426,7 @@
                 .on('receipt', (receipt) => {
                     	console.log("DONE" + receipt.contractAddress);
                     	contractAddress = receipt.contractAddress;
+			document.getElementById("address").innerHTML=contractAddress;
                     	console.log(contractAddress);
             	})
             	.on('confirmation', (confirmationNumber, receipt) => { 
