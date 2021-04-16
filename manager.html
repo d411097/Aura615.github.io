@@ -27,7 +27,8 @@
 	    </div>
             <div id="addvoter">
                 <p>
-                投票人姓名:<input id="voter" type="text"/>
+                投票人姓名:<input id="voterName" type="text"/>
+		投票人地址:<input id="voterAddress" type="text"/>
                 <button onclick="Addvoter()">加入投票人</button>
                 </p>
             </div>
@@ -378,12 +379,6 @@
             $( "#manager_action" ).hide();
           });
 
-//           if (typeof web3 !== 'undefined') {
-//             web3 = new Web3(web3.currentProvider);
-//           } else {
-//             alert('initial failed');
-//           }
-
 	window.addEventListener('load', async () => {
 		if (window.ethereum) {
 			window.web3 = new Web3(ethereum);
@@ -405,13 +400,15 @@
 	});
 	
             async function Deploy(){
-		var Dgas;
+		var estgas;
+		var name = $("#name").val();
+		
 		ballotContract.deploy({
                     	data: bytecode,
                     	arguments: [name],
             	})
 		.estimateGas(function(err, gas){
-		    Dgas = gas
+		    estgas = gas
 		});
 		
                 ballotContract.deploy({
@@ -420,7 +417,7 @@
             	})
             	.send({
 		    	from: accountaddress,
-		    	gas: Dgas,//1308700, 
+		    	gas: estgas,
 		    	gasPrice: web3.eth.gasPrice,
 		    	gasLimit: 2000000
             	}, (error, transactionHash) => {
@@ -453,6 +450,20 @@
 		document.getElementById("address").innerHTML=contractAddress;
 	    }
 
+	    function Addvoter(){
+		var voterAddress = $("#voterAddress").val();
+		var voterName = $("#voterName").val();
+		var estgas;
+		
+		ballotContract.methods.addVoter(voterAddress, voterName).estimateGas(function(err, gas){
+		    estgas = gas
+		});
+		document.getElementById("address").innerHTML=voterName;
+	    }
+	    
+	    function Addcadidate(){
+	    }
+		
             function Start(){
                 $( '#start').hide();
                 $( '#addvoter').hide();
@@ -460,6 +471,9 @@
                 $( '#end').show();
 
             }
+	    
+	    function End(){
+	    }
         </script>
     </body>
 </html>
