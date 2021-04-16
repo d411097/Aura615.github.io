@@ -411,6 +411,7 @@
                     	arguments: [name],
             	})
 		.estimateGas(function(err, gas){
+		    console.log(gas);
 		    estgas = gas;
 		});
 		
@@ -477,7 +478,6 @@
 		
 // 		ballotContract.methods.addVoter(voterAddress, voterName).send
 		    
-		document.getElementById("address").innerHTML=voterName;
 	    }
 	    
 	    function Addcadidate(){
