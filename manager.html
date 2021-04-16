@@ -19,6 +19,9 @@
         <p>建立人性名:<input id="name" type="text" />
             <button onclick="Deploy()">確定</button>
         </p>
+	<p>合約地址:<input id="contract" type="text" />
+	    <button onclick="GetContract()">確定</button>
+	</p>
 	</div>
         <div id="manager_action">
 	    <div>
@@ -441,11 +444,22 @@
                 	console.log(newContractInstance.options.address) // instance with the new contract address
             	});
 		
+		Ballot = new web3.eth.Contract(abi, contractAddress);
+		    
                 $( '#deploy').hide();
                 $( '#manager_action').show();
                 $( '#end').hide();
             }
 
+	    function GetContract(){
+		contractAddress = $("#contract").val();
+		Ballot = new web3.eth.Contract(abi, contractAddress);
+		    
+                $( '#deploy').hide();
+                $( '#manager_action').show();
+                $( '#end').hide();
+	    }
+		
 	    function ShowAddress(){
 		document.getElementById("address").innerHTML=contractAddress;
 	    }
@@ -455,7 +469,7 @@
 		var voterName = $("#voterName").val();
 		var estgas;
 		
-		ballotContract.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
+		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
             	.then(function(err, gas){
 		    estgas = gas
 		});
