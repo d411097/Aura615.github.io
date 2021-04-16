@@ -369,7 +369,8 @@
 	  var contractAddress;
 	  var accountaddress;
           var txhash;
-          var web3 = new Web3();
+	  var testNet = new Web3.providers.HttpProvider("https://goerli.infura.io/v3/04ef13ab2e884a33ad3637e512e5cb99") 
+          var web3 = new Web3(testNet);
 	
           $( document ).ready(function() {
             $( "#manager_action" ).hide();
@@ -383,7 +384,7 @@
 
 	window.addEventListener('load', async () => {
 		if (window.ethereum) {
-			window.web3 = new Web3(ethereum);
+			window.web3 = new Web3(testNet);
 			try {
 				await ethereum.enable();
 				accountaddress = web3.givenProvider.selectedAddress;
