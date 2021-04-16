@@ -403,7 +403,7 @@
 	});
 	
             async function Deploy(){
-		var estgas;
+		var estgas = 0;
 		var name = $("#name").val();
 		
 		ballotContract.deploy({
@@ -411,8 +411,9 @@
                     	arguments: [name],
             	})
 		.estimateGas(function(err, gas){
-		    console.log(gas);
+		    console.log(estgas);
 		    estgas = gas;
+		    console.log(estgas);
 		});
 		
                 ballotContract.deploy({
