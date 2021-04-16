@@ -455,9 +455,9 @@
 		var voterName = $("#voterName").val();
 		var estgas;
 		
-		ballotContract.methods.addVoter(voterAddress, voterName).estimateGas(function(err, gas){
-		    estgas = gas
-		});
+// 		ballotContract.methods.addVoter(voterAddress, voterName).estimateGas(function(err, gas){
+// 		    estgas = gas
+// 		});
 		document.getElementById("address").innerHTML=voterName;
 	    }
 	    
