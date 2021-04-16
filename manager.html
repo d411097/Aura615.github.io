@@ -411,7 +411,7 @@
                     	arguments: [name],
             	})
 		.estimateGas(function(err, gas){
-		    estgas = gas
+		    estgas = gas;
 		});
 		
                 ballotContract.deploy({
@@ -471,7 +471,8 @@
 		
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
             	.then(function(err, gas){
-		    estgas = gas
+		    estgas = gas;
+		    console.log(estgas);
 		});
 		
 // 		ballotContract.methods.addVoter(voterAddress, voterName).send
