@@ -19,10 +19,12 @@
         <p>建立人性名:<input id="name" type="text" />
             <button onclick="Deploy()">確定</button>
         </p>
-        </div>
-        <div id="address">
-        </div>
+	</div>
         <div id="manager_action">
+	    <div>
+		<button onclick="ShowAddress()">合約地址查詢</button>
+		<div id="address"></div>
+	    </div>
             <div id="addvoter">
                 <p>
                 投票人姓名:<input id="voter" type="text"/>
@@ -436,8 +438,10 @@
                 $( '#deploy').hide();
                 $( '#manager_action').show();
                 $( '#end').hide();
-		document.getElementById("address").innerHTML=contractAddress;
             }
+	    function ShowAddress(){
+		document.getElementById("address").innerHTML=contractAddress;
+	    }
             function Start(){
                 $( '#start').hide();
                 $( '#addvoter').hide();
