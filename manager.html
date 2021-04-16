@@ -377,7 +377,6 @@
           var txhash;
 	  var testNet = new Web3.providers.HttpProvider("https://goerli.infura.io/v3/04ef13ab2e884a33ad3637e512e5cb99") 
           var web3 = new Web3();
-	  var estgas = 0;
 	
           $( document ).ready(function() {
             $( "#manager_action" ).hide();
@@ -405,6 +404,7 @@
 	
             async function Deploy(){
 		var name = $("#name").val();
+	  	var estgas = 0;
 		
 		ballotContract.deploy({
                     	data: bytecode,
@@ -421,7 +421,7 @@
             	})
             	.send({
 		    	from: accountaddress,
-		    	gas: estgas,
+		    	gas: 1235219,//estgas,
 		    	gasPrice: web3.eth.gasPrice,
 		    	gasLimit: 2000000
             	}, (error, transactionHash) => {
@@ -468,11 +468,12 @@
 	    function Addvoter(){
 		var voterAddress = $("#voterAddress").val();
 		var voterName = $("#voterName").val();
+	 	var estgas = 0;
 		
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
             	.then(function(err, gas){
 		    estgas = gas;
-		    console.log(gas);
+		    console.log(estgas);
 		});
 		
 // 		ballotContract.methods.addVoter(voterAddress, voterName).send
