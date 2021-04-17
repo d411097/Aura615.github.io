@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <title>VOTE</title>
 	<link rel="stylesheet" href="home.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
     </head>
@@ -445,8 +444,6 @@
             	.then((newContractInstance) => {
                 	console.log(newContractInstance.options.address) // instance with the new contract address
             	});
-		
-		Ballot = new web3.eth.Contract(abi, contractAddress);
 		    
                 $( '#deploy').hide();
                 $( '#manager_action').show();
@@ -455,7 +452,6 @@
 
 	    function GetContract(){
 		contractAddress = $("#contract").val();
-		Ballot = new web3.eth.Contract(abi, contractAddress);
 		    
                 $( '#deploy').hide();
                 $( '#manager_action').show();
@@ -467,6 +463,7 @@
 	    }
 
 	    function Addvoter(){
+		Ballot = new web3.eth.Contract(abi, contractAddress);
 		var voterAddress = $("#voterAddress").val();
 		var voterName = $("#voterName").val();
 	 	var estgas = 0;
