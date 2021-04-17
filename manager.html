@@ -474,8 +474,8 @@
 		    console.log(accountaddress);
 		    console.log(estgas);
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
-		.then(function(err, gas){
-		    estgas = gas;
+		.then(function(gasAmount){
+		    estgas = gasAmount;
 		    console.log(estgas);
 		});
 		
