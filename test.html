@@ -468,6 +468,7 @@
             Ballot.methods.addVoter($("#txtNewVoterAddress").val(), $("#txtNewVoterName").val()).estimateGas({from: accountaddress})
             .then(function(gasAmount){
                 mygas = gasAmount;
+		console.log(mygas);
             })
             
         	Ballot.methods.addVoter($("#txtNewVoterAddress").val(), $("#txtNewVoterName").val()).send({
