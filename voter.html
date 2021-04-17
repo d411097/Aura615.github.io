@@ -430,14 +430,16 @@
                 })
                 .on('receipt', (receipt) => {
                     console.log(receipt);
+		    $( "#search" ).hide();
+                    $( "#wait" ).show();
                 })
                 .on('confirmation', (confirmationNumber, receipt) => {
                     console.log("confirmation");
                 })
                 .on('error', console.error);
                 
-                $( "#search" ).hide();
-                $( "#wait" ).show();
+//                 $( "#search" ).hide();
+//                 $( "#wait" ).show();
             }
         </script>
     </body>
