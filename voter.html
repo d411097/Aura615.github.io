@@ -414,7 +414,6 @@
             }
             
             function Vote(){
-		$( "#wait" ).show();
                 Ballot = new web3.eth.Contract(abi, contractAddress);
                 var num = $("#number_vote").val();
                 var estgas = 0;
@@ -432,6 +431,7 @@
                 })
                 .on('transactionHash', (hash) => {
                     console.log("transactionHash");
+		    $( "#wait" ).show();
                 })
                 .on('receipt', (receipt) => {
                     console.log("receipt");
