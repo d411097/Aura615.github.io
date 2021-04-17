@@ -477,8 +477,23 @@
 		    estgas = gasAmount;
 		    console.log(estgas);
 		});
-		
-// 		ballotContract.methods.addVoter(voterAddress, voterName).send
+
+		Ballot.methods.addVoter(voterAddress, voterName).send({
+			from: accountaddress,
+			gas: estgas, 
+			gasPrice: web3.eth.gasPrice       	    
+		})
+		.on('transactionHash', (hash) => {
+			console.log("transactionHash");
+	    	})
+	    	.on('receipt', (receipt) => {
+			console.log("receipt");            
+
+	    	})
+	    	.on('confirmation', (confirmationNumber, receipt) => {
+			console.log("confirmation");
+	    	})
+	    	.on('error', console.error);
 		    
 	    }
 	    
