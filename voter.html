@@ -403,28 +403,11 @@
                 var num = $("#number").val();
                 var estgas = 0;
 
-                Ballot.methods.CandidateName(num).estimateGas({from: accountaddress})
-                .then(function(gasAmount){
-                    estgas = gasAmount;
-                    console.log(estgas);
+                Ballot.methods.CandidateName(num).call({from: accountaddress})
+                .then(function(error, result){
+                    console.log(result);
+                    document.getElementById("candidate").innerHTML=result;
                 });
-
-                Ballot.methods.CandidateName(num).send({
-                    from: accountaddress,
-                    gas: estgas, 
-                    gasPrice: web3.eth.gasPrice       	    
-                })
-                .on('transactionHash', (hash) => {
-                    console.log("transactionHash");
-                })
-                .on('receipt', (receipt) => {
-                    console.log("receipt");
-                    document.getElementById("candidate").innerHTML=receipt;
-                })
-                .on('confirmation', (confirmationNumber, receipt) => {
-                    console.log("confirmation");
-                })
-                .on('error', console.error);
             }
             
             function Vote(){
