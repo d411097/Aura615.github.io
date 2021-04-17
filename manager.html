@@ -469,6 +469,10 @@
 		var voterName = $("#voterName").val();
 	 	var estgas = 0;
 		
+		    console.log(voterAddress);
+		    console.log(voterName);
+		    console.log(accountaddress);
+		    console.log(estgas);
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
 		.then(function(err, gas){
 		    estgas = gas;
