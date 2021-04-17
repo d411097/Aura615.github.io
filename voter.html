@@ -403,8 +403,7 @@
                 var num = $("#number").val();
                 var estgas = 0;
 
-                Ballot.methods.CandidateName(num).call({from: accountaddress})
-                .then(function(error, result){
+                Ballot.methods.CandidateName(num).call({from: accountaddress}, function(error, result){
                     console.log(result);
                     document.getElementById("candidate").innerHTML=result;
                 });
