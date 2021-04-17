@@ -468,10 +468,6 @@
 		var voterName = $("#voterName").val();
 	 	var estgas = 0;
 		
-		    console.log(voterAddress);
-		    console.log(voterName);
-		    console.log(accountaddress);
-		    console.log(estgas);
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
 		.then(function(gasAmount){
 		    estgas = gasAmount;
@@ -494,21 +490,96 @@
 			console.log("confirmation");
 	    	})
 	    	.on('error', console.error);
-		    
 	    }
 	    
 	    function Addcadidate(){
+	    	Ballot = new web3.eth.Contract(abi, contractAddress);
+		var candidateName = $("#candidate").val();
+		var estgas = 0;
+		
+		Ballot.methods.addCandidate(candidateName).estimateGas({from: accountaddress})
+		.then(function(gasAmount){
+		    estgas = gasAmount;
+		    console.log(estgas);
+		});
+
+		Ballot.methods.addCandidate(candidateName).send({
+			from: accountaddress,
+			gas: estgas, 
+			gasPrice: web3.eth.gasPrice       	    
+		})
+		.on('transactionHash', (hash) => {
+			console.log("transactionHash");
+	    	})
+	    	.on('receipt', (receipt) => {
+			console.log("receipt");            
+
+	    	})
+	    	.on('confirmation', (confirmationNumber, receipt) => {
+			console.log("confirmation");
+	    	})
+	    	.on('error', console.error);
 	    }
 		
             function Start(){
+		Ballot = new web3.eth.Contract(abi, contractAddress);
+		var estgas = 0;
+		
+		Ballot.methods.startVote().estimateGas({from: accountaddress})
+		.then(function(gasAmount){
+		    estgas = gasAmount;
+		    console.log(estgas);
+		});
+
+		Ballot.methods.startVote().send({
+			from: accountaddress,
+			gas: estgas, 
+			gasPrice: web3.eth.gasPrice       	    
+		})
+		.on('transactionHash', (hash) => {
+			console.log("transactionHash");
+	    	})
+	    	.on('receipt', (receipt) => {
+			console.log("receipt");            
+
+	    	})
+	    	.on('confirmation', (confirmationNumber, receipt) => {
+			console.log("confirmation");
+	    	})
+	    	.on('error', console.error);
+		
                 $( '#start').hide();
                 $( '#addvoter').hide();
                 $( '#addcandidate').hide();
                 $( '#end').show();
-
             }
 	    
 	    function End(){
+		Ballot = new web3.eth.Contract(abi, contractAddress);
+		var estgas = 0;
+		
+		Ballot.methods.endVote().estimateGas({from: accountaddress})
+		.then(function(gasAmount){
+		    estgas = gasAmount;
+		    console.log(estgas);
+		});
+
+		Ballot.methods.endVote().send({
+			from: accountaddress,
+			gas: estgas, 
+			gasPrice: web3.eth.gasPrice       	    
+		})
+		.on('transactionHash', (hash) => {
+			console.log("transactionHash");
+	    	})
+	    	.on('receipt', (receipt) => {
+			console.log("receipt");            
+
+	    	})
+	    	.on('confirmation', (confirmationNumber, receipt) => {
+			console.log("confirmation");
+	    	})
+	    	.on('error', console.error);
 	    }
         </script>
     </body>
