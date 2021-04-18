@@ -354,11 +354,11 @@
 		
 		function Address(){
 			contractAddress = $("#address").val();
-			var num = web3.eth.call({
-			    to: contractAddress,
-			    data: METHOD_ID
+			Ballot.methods.totalCandidate.call({from: accountaddress}, function(error, result){
+			    console.log(result);
+			    document.getElementById("result").innerHTML=result;
 			});
-			document.getElementById("result").innerHTML=num;
+			
 			$( "#contract_address" ).hide();
 		}
         </Script>
