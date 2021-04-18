@@ -377,15 +377,14 @@
 		function Address(){
 			contractAddress = $("#address").val();
 			Ballot = new web3.eth.Contract(abi, contractAddress);
-			var num = 0;
+			var num;
 			
 			Ballot.methods.totalCandidate().call({from: accountaddress}, function(error, result){
 			    console.log(result);
 			    num = result;
 			});
-			
+			console.log(num);
 			for(var i = 0; i < 1; i++){
-				console.log("a");
 				Ballot.methods.CandidateName(i+1).call({from: accountaddress}, function(error, result){
 				    console.log(result);
 				    document.getElementById("result").innerHTML=result;
