@@ -422,6 +422,7 @@
 				from: accountaddress,
 				gas: estgas,
 				gasPrice: web3.eth.gasPrice,
+                		gasLimit: 2000000
 			}, (error, transactionHash) => {
 				txhash = transactionHash;
 			})
