@@ -407,7 +407,8 @@
                 Ballot = new web3.eth.Contract(abi, contractAddress);
                 var num = $("#number").val();
 
-                Ballot.methods.CandidateName(num).call({from: accountaddress}, function(error, result){
+                Ballot.methods.CandidateName(num).call({from: accountaddress})
+		.then( function(result){
                     console.log(result);
                     document.getElementById("candidate").innerHTML=result;
                 });
