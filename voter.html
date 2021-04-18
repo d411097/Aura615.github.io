@@ -417,17 +417,15 @@
             function Vote(){
                 Ballot = new web3.eth.Contract(abi, contractAddress);
                 var num = $("#number_vote").val();
-                var estgas = 0;
 
                 Ballot.methods.doVote(num).estimateGas({from: accountaddress})
                 .then(function(gasAmount){
-                    estgas = gasAmount;
-                    console.log(estgas);
+                    console.log(gasAmount);
                 });
 		
                 Ballot.methods.doVote(num).send({
                     from: accountaddress,
-                    gas: estgas, 
+                    gas: 1500000, 
                     gasPrice: web3.eth.gasPrice       	    
                 })
                 .on('transactionHash', (hash) => {
