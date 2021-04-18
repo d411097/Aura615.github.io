@@ -383,16 +383,15 @@
 			    console.log(result);
 			    num = result;
 			});
-			console.log(num);
 			
 			for(var i = 0; i < 1; i++){
 				console.log("a");
-				Ballot.methods.CandidateName(i).call({from: accountaddress}, function(error, result){
+				Ballot.methods.CandidateName(i+1).call({from: accountaddress}, function(error, result){
 				    console.log(result);
 				    document.getElementById("result").innerHTML=result;
 				});
 				
-				Ballot.methods.CandidateVotes(i).call({from: accountaddress}, function(error, result){
+				Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
 				    console.log(result);
 				    document.getElementById("votes").innerHTML=result;
 				});
