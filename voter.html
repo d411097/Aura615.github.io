@@ -404,11 +404,13 @@
 		.then(function(result){
 			if(result != 1){
 				document.getElementById("not_time").innerHTML="not time";
+				console.log("not time");
 			}
 			else{
 				$( "#search" ).show();
 				$( "#wait" ).hide();
 				$( "#contract_address" ).hide();
+				console.log("voting");
 			}
 		}
             }
