@@ -18,12 +18,13 @@
                 </ul>
         </nav>
         <div id="deploy">
-        <p>建立人姓名:<input id="name" type="text" />
-            <button onclick="Deploy()">確定</button>
-        </p>
-	<p>合約地址:<input id="contract" type="text" />
-	    <button onclick="GetContract()">確定</button>
-	</p>
+            <p>建立人姓名:<input id="name" type="text" />
+                <button onclick="Deploy()">確定</button>
+            </p>
+	    <p>合約地址:<input id="contract" type="text" />
+	        <button onclick="GetContract()">確定</button>
+	    </p>
+	    <div id="not_time"></div>
 	</div>
         <div id="manager_action">
 	    <div>
@@ -450,10 +451,26 @@
 
 	    function GetContract(){
 		contractAddress = $("#contract").val();
-		    
-                $( '#deploy').hide();
-                $( '#manager_action').show();
-                $( '#end').hide();
+		
+		Ballot = new web3.eth.Contract(abi, contractAddress);
+		
+		Ballot.methods.state().call({from: accountaddress})
+		.then(function(result){
+			if(result == 0){
+				$( '#deploy').hide();
+				$( '#manager_action').show();
+				$( '#end').hide();
+				console.log("creating");
+			}
+			else if(result == 0){
+				$( '#deploy').hide();
+				$( '#end').show();
+				console.log("voting");
+			}
+			else{
+				document.getElementById("not_time").innerHTML="The Ballot is ended";
+			}
+		});
 	    }
 		
 	    function ShowAddress(){
