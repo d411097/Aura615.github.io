@@ -356,7 +356,7 @@
 			contractAddress = $("#address").val();
 			var num = web3.eth.call({
 			    to: contractAddress,
-			    data: totalCandidate
+			    data: METHOD_ID
 			});
 			document.getElementById("result").innerHTML=num;
 			$( "#contract_address" ).hide();
