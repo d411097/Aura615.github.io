@@ -22,8 +22,10 @@
                 <button onclick="Address()"> 確定</button>
             </p>
         </div>
-        <div id="result">
-        </div>
+        <p>
+	    <div id="result"></div>
+	    <div id="votes"></div>
+	</p>
         <script>
 		var abi = [
 		    {
@@ -385,12 +387,12 @@
 			for(var i = 0; i < num; i++){
 				Ballot.methods.CandidateName(i).call({from: accountaddress}, function(error, result){
 				    console.log(result);
-				    document.getElementById("candidate").innerHTML=result;
+				    document.getElementById("result").innerHTML=result;
 				});
 				
 				Ballot.methods.CandidateVotes(i).call({from: accountaddress}, function(error, result){
 				    console.log(result);
-				    document.getElementById("candidate").innerHTML=result;
+				    document.getElementById("votes").innerHTML=result;
 				});
 			}
 			
