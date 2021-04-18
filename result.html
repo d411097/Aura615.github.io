@@ -385,6 +385,7 @@
 			});
 			
 			for(var i = 0; i < num; i++){
+				console.log("a");
 				Ballot.methods.CandidateName(i).call({from: accountaddress}, function(error, result){
 				    console.log(result);
 				    document.getElementById("result").innerHTML=result;
