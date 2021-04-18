@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>VOTE</title>
+        <title>TKU專題</title>
         <link rel="stylesheet" href="home.css" />
     </head>
     <body>
@@ -14,9 +14,32 @@
                 <li><a href="result.html">RESULT</a></li>
                 </ul>
         </nav>
-        <h1>TKU專題:區塊鏈投票</h1>
         <h1>Welcome!</h1>
+        <h2>功能介紹</h2>
+        
+        
+        <button type="button" class ="button" onclick="home()">HOME</button>
+        <button type="button" class ="button" onclick="vote()">VOTER</button>
+        <button type="button" class ="button" onclick="manager()">MANAGER</button>
+        <button type="button" class ="button" onclick="result()">RESULT</button>
+
+        <p id="home"></p>
+        
         <h2><marquee behavior="alternate"width="1000"><img src="1618031375507.jpg" weidth="300px" height="350px" /></marquee></h2>
+        <script>
+            function home(){
+                document.getElementById('home').innerHTML = '主頁面及功能介紹';
+            }
+            function vote(){
+                document.getElementById('home').innerHTML = '投票頁面，當投票開啟時，投票者可以進行參選人的查詢及行投票。';
+            }
+            function manager(){
+                document.getElementById('home').innerHTML = '管理者頁面，可以建立投票、開啟投票及結束投票，而建立投票裡包含新增參選人及新增投票參與者';
+            }
+            function result(){
+                document.getElementById('home').innerHTML = '顯示投票結果頁面，當投票結束會顯示投票的結果';
+            }
+            </script>
         
     </body>
 </html>
