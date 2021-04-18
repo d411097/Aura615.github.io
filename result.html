@@ -383,9 +383,7 @@
 			.then(function(result){
 			    console.log(result);
 			    num = result;
-			});
-			console.log(num);
-			for(var i = 0; i < num; i++){
+			    for(var i = 0; i < num; i++){
 				Ballot.methods.CandidateName(i+1).call({from: accountaddress}, function(error, result){
 				    console.log(result);
 				    document.getElementById("result").innerHTML=result;
@@ -395,7 +393,8 @@
 				    console.log(result);
 				    document.getElementById("votes").innerHTML=result;
 				});
-			}
+			    }
+			});
 			
 			$( "#contract_address" ).hide();
 		}
