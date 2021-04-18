@@ -375,11 +375,24 @@
 		function Address(){
 			contractAddress = $("#address").val();
 			Ballot = new web3.eth.Contract(abi, contractAddress);
+			var num = 0;
 			
 			Ballot.methods.totalCandidate().call({from: accountaddress}, function(error, result){
 			    console.log(result);
-			    document.getElementById("result").innerHTML=result;
+			    num = result;
 			});
+			
+			for(var i = 0; i < num; i++){
+				Ballot.methods.CandidateName(i).call({from: accountaddress}, function(error, result){
+				    console.log(result);
+				    document.getElementById("candidate").innerHTML=result;
+				});
+				
+				Ballot.methods.CandidateVotes(i).call({from: accountaddress}, function(error, result){
+				    console.log(result);
+				    document.getElementById("candidate").innerHTML=result;
+				});
+			}
 			
 			$( "#contract_address" ).hide();
 		}
