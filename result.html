@@ -382,7 +382,10 @@
 			Ballot.methods.totalCandidate().call({from: accountaddress}, function(error, result){
 			    console.log(result);
 			    num = result;
-			    for(var i = 0; i < num; i++){
+			});
+			console.log(num);
+			
+			for(var i = 0; i < 1; i++){
 				console.log("a");
 				Ballot.methods.CandidateName(i).call({from: accountaddress}, function(error, result){
 				    console.log(result);
@@ -393,9 +396,7 @@
 				    console.log(result);
 				    document.getElementById("votes").innerHTML=result;
 				});
-			    }
-			});
-			console.log(num);
+			}
 			
 			$( "#contract_address" ).hide();
 		}
