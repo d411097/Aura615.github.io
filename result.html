@@ -383,7 +383,7 @@
 			    console.log(result);
 			    num = result;
 			});
-			
+			console.log(num);
 			for(var i = 0; i < num; i++){
 				console.log("a");
 				Ballot.methods.CandidateName(i).call({from: accountaddress}, function(error, result){
