@@ -405,15 +405,13 @@
 	
             async function Deploy(){
 		var name = $("#name").val();
-	  	var estgas = 0;
 		
 		ballotContract.deploy({
                     	data: bytecode,
                     	arguments: [name],
             	})
 		.estimateGas(function(err, gas){
-		    estgas = gas;
-		    console.log(estgas);
+		    console.log(gas);
 		});
 		
                 ballotContract.deploy({
@@ -422,7 +420,7 @@
             	})
             	.send({
 		    	from: accountaddress,
-// 		    	gas: estgas,
+		    	gas: 1500000,
 		    	gasPrice: web3.eth.gasPrice,
             	}, (error, transactionHash) => {
                     	txhash = transactionHash;
@@ -466,17 +464,15 @@
 		Ballot = new web3.eth.Contract(abi, contractAddress);
 		var voterAddress = $("#voterAddress").val();
 		var voterName = $("#voterName").val();
-	 	var estgas = 0;
 		
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
 		.then(function(gasAmount){
-		    estgas = gasAmount;
-		    console.log(estgas);
+		    console.log(gasAmount);
 		});
 
 		Ballot.methods.addVoter(voterAddress, voterName).send({
 			from: accountaddress,
-			gas: estgas, 
+			gas: 1500000, 
 			gasPrice: web3.eth.gasPrice       	    
 		})
 		.on('transactionHash', (hash) => {
@@ -495,17 +491,15 @@
 	    function Addcadidate(){
 	    	Ballot = new web3.eth.Contract(abi, contractAddress);
 		var candidateName = $("#candidate").val();
-		var estgas = 0;
 		
 		Ballot.methods.addCandidate(candidateName).estimateGas({from: accountaddress})
 		.then(function(gasAmount){
-		    estgas = gasAmount;
-		    console.log(estgas);
+		    console.log(gasAmount);
 		});
 
 		Ballot.methods.addCandidate(candidateName).send({
 			from: accountaddress,
-			gas: estgas, 
+			gas: 1500000, 
 			gasPrice: web3.eth.gasPrice       	    
 		})
 		.on('transactionHash', (hash) => {
@@ -523,17 +517,15 @@
 		
             function Start(){
 		Ballot = new web3.eth.Contract(abi, contractAddress);
-		var estgas = 0;
 		
 		Ballot.methods.startVote().estimateGas({from: accountaddress})
 		.then(function(gasAmount){
-		    estgas = gasAmount;
-		    console.log(estgas);
+		    console.log(gasAmount);
 		});
 
 		Ballot.methods.startVote().send({
 			from: accountaddress,
-			gas: estgas, 
+			gas: 1500000, 
 			gasPrice: web3.eth.gasPrice       	    
 		})
 		.on('transactionHash', (hash) => {
@@ -556,17 +548,15 @@
 	    
 	    function End(){
 		Ballot = new web3.eth.Contract(abi, contractAddress);
-		var estgas = 0;
 		
 		Ballot.methods.endVote().estimateGas({from: accountaddress})
 		.then(function(gasAmount){
-		    estgas = gasAmount;
-		    console.log(estgas);
+		    console.log(gasAmount);
 		});
 
 		Ballot.methods.endVote().send({
 			from: accountaddress,
-			gas: estgas, 
+			gas: 1500000, 
 			gasPrice: web3.eth.gasPrice       	    
 		})
 		.on('transactionHash', (hash) => {
