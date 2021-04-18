@@ -421,7 +421,6 @@
                     	arguments: [name],
             	})
             	.send({
-			console.log(estgas);
 		    	from: accountaddress,
 		    	gas: estgas,
 		    	gasPrice: web3.eth.gasPrice,
@@ -443,7 +442,7 @@
                 	console.log("confirmation");
             	})
             	.then((newContractInstance) => {
-                	console.log(newContractInstance.options.address) // instance with the new contract address
+                	console.log(newContractInstance.options.address); // instance with the new contract address
             	});
 		    
                 $( '#deploy').hide();
