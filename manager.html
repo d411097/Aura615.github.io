@@ -414,36 +414,63 @@
 		.estimateGas(function(err, gas){
 		    estgas = gas;
 		    console.log(estgas);
+		    	ballotContract.deploy({
+				data: bytecode,
+				arguments: [name],
+			})
+			.send({
+				from: accountaddress,
+				gas: estgas,
+				gasPrice: web3.eth.gasPrice,
+			}, (error, transactionHash) => {
+				txhash = transactionHash;
+			})
+			.on('error', (error) => { 
+				console.log("error");            
+			})
+			.on('transactionHash', (transactionHash) => { 
+				console.log("transactionHash");
+			})
+			.on('receipt', (receipt) => {
+				console.log("DONE" + receipt.contractAddress);
+				contractAddress = receipt.contractAddress;
+				console.log(contractAddress);
+			})
+			.on('confirmation', (confirmationNumber, receipt) => { 
+				console.log("confirmation");
+			})
+			.then((newContractInstance) => {
+				console.log(newContractInstance.options.address) // instance with the new contract address
+			});
 		});
-		console.log(estgas);
-                ballotContract.deploy({
-                    	data: bytecode,
-                    	arguments: [name],
-            	})
-            	.send({
-		    	from: accountaddress,
-		    	gas: estgas,
-		    	gasPrice: web3.eth.gasPrice,
-            	}, (error, transactionHash) => {
-                    	txhash = transactionHash;
-                })
-                .on('error', (error) => { 
-                    	console.log("error");            
-                })
-                .on('transactionHash', (transactionHash) => { 
-                    	console.log("transactionHash");
-            	})
-                .on('receipt', (receipt) => {
-                    	console.log("DONE" + receipt.contractAddress);
-                    	contractAddress = receipt.contractAddress;
-                    	console.log(contractAddress);
-            	})
-            	.on('confirmation', (confirmationNumber, receipt) => { 
-                	console.log("confirmation");
-            	})
-            	.then((newContractInstance) => {
-                	console.log(newContractInstance.options.address) // instance with the new contract address
-            	});
+//                 ballotContract.deploy({
+//                     	data: bytecode,
+//                     	arguments: [name],
+//             	})
+//             	.send({
+// 		    	from: accountaddress,
+// 		    	gas: estgas,
+// 		    	gasPrice: web3.eth.gasPrice,
+//             	}, (error, transactionHash) => {
+//                     	txhash = transactionHash;
+//                 })
+//                 .on('error', (error) => { 
+//                     	console.log("error");            
+//                 })
+//                 .on('transactionHash', (transactionHash) => { 
+//                     	console.log("transactionHash");
+//             	})
+//                 .on('receipt', (receipt) => {
+//                     	console.log("DONE" + receipt.contractAddress);
+//                     	contractAddress = receipt.contractAddress;
+//                     	console.log(contractAddress);
+//             	})
+//             	.on('confirmation', (confirmationNumber, receipt) => { 
+//                 	console.log("confirmation");
+//             	})
+//             	.then((newContractInstance) => {
+//                 	console.log(newContractInstance.options.address) // instance with the new contract address
+//             	});
 		    
                 $( '#deploy').hide();
                 $( '#manager_action').show();
