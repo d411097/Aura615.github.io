@@ -29,7 +29,7 @@
 	</div>
         <div id="manager_action">
 	    <div>
-		<button onclick="ShowAddress()">合約地址查詢</button>
+<!-- 		<button onclick="ShowAddress()">合約地址查詢</button> -->
 		<div id="address"></div>
 	    </div>
             <div id="addvoter">
@@ -45,9 +45,11 @@
             </div>
             <div id="start">
                 <button onclick="Start()">開啟投票</button>
+		<div id="start_wait"></div>
             </div>
             <div id="end">
                 <button onclick="End()">結束投票</button>
+		<div id="end_wait"></div>
             </div>
         </div>
         <script>
@@ -442,6 +444,7 @@
 			$( '#deploy').hide();
 			$( '#manager_action').show();
 			$( '#end').hide();
+			document.getElementById("address").innerHTML=contractAddress;
             	})
             	.on('confirmation', (confirmationNumber, receipt) => { 
                 	console.log("confirmation");
@@ -478,9 +481,9 @@
 		});
 	    }
 		
-	    function ShowAddress(){
-		document.getElementById("address").innerHTML=contractAddress;
-	    }
+// 	    function ShowAddress(){
+// 		document.getElementById("address").innerHTML=contractAddress;
+// 	    }
 
 	    function Addvoter(){
 		Ballot = new web3.eth.Contract(abi, contractAddress);
@@ -489,7 +492,7 @@
 		
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
 		.then(function(gasAmount){
-		    console.log(gasAmount);
+		    	console.log(gasAmount);
 		});
 
 		Ballot.methods.addVoter(voterAddress, voterName).send({
@@ -528,7 +531,6 @@
 	    	})
 	    	.on('receipt', (receipt) => {
 			console.log("receipt");            
-
 	    	})
 	    	.on('confirmation', (confirmationNumber, receipt) => {
 			console.log("confirmation");
@@ -551,20 +553,22 @@
 		})
 		.on('transactionHash', (hash) => {
 			console.log("transactionHash");
+			document.getElementById("start_wait").innerHTML="Wait a moment";
 	    	})
 	    	.on('receipt', (receipt) => {
-			console.log("receipt");            
-
+			console.log("receipt");
+			$( '#start').hide();
+			$( '#addvoter').hide();
+			$( '#addcandidate').hide();
+			$( '#end').show();
 	    	})
 	    	.on('confirmation', (confirmationNumber, receipt) => {
 			console.log("confirmation");
 	    	})
-	    	.on('error', console.error);
-		
-                $( '#start').hide();
-                $( '#addvoter').hide();
-                $( '#addcandidate').hide();
-                $( '#end').show();
+	    	.on('error', (error) => { 
+                    	console.error;
+			document.getElementById("start_wait").innerHTML="failed";
+                });
             }
 	    
 	    function End(){
@@ -582,10 +586,11 @@
 		})
 		.on('transactionHash', (hash) => {
 			console.log("transactionHash");
+			document.getElementById("end_wait").innerHTML="Wait a moment";
 	    	})
 	    	.on('receipt', (receipt) => {
 			console.log("receipt");            
-
+			document.getElementById("start_wait").innerHTML="Success";
 	    	})
 	    	.on('confirmation', (confirmationNumber, receipt) => {
 			console.log("confirmation");
