@@ -388,7 +388,7 @@
 				else{	
 					console.log("ended");
 					Ballot.methods.totalCandidate().call({from: accountaddress})
-					.then(function(result){
+					.then(async function(result){
 					    console.log(result);
 					    num = result;
 					    for(var i = 0; i < num; i++){
