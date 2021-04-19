@@ -391,7 +391,7 @@
 					.then(async function(result){
 					    console.log(result);
 					    num = result;
-					    console.log("C3");
+					    console.log("C4");
 					    for(var i = 0; i < num; i++){
 						Ballot.methods.CandidateName(i+1).call({from: accountaddress}, function(error, result){
 						    console.log(result);
