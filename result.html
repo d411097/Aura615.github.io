@@ -410,10 +410,10 @@
 							});
 						});
 
-// 						Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
-// 						    console.log(result);
-// 						    document.getElementById("votes").innerHTML=result;
-// 						});
+ 						Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
+ 						    console.log(result);
+ 						    document.getElementById("result").innerHTML=result;
+ 						});
 					    }
 					});
 
