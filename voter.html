@@ -448,6 +448,8 @@
 			    from: accountaddress,
 			    gas: 1500000, 
 			    gasPrice: web3.eth.gasPrice       	    
+			}, (error, result) => {
+			    console.log(result);
 			})
 			.on('transactionHash', (hash) => {
 			    console.log("transactionHash");
@@ -455,7 +457,6 @@
 			})
 			.on('receipt', (receipt) => {
 			    console.log("receipt");
-			    console.log(receipt);
 			    $( "#search" ).hide();
 			    $( "#result" ).show();
 			})
