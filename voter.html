@@ -439,6 +439,11 @@
 			alert('未輸入文字');
 		}
 		else{
+			Ballot.methods.voterRegister(accountaddress).call({from: accountaddress})
+			.then( function(result){
+			    console.log(result);
+			});
+			
 			Ballot.methods.doVote(num).estimateGas({from: accountaddress})
 			.then(function(gasAmount){
 			    console.log(gasAmount);
@@ -464,9 +469,6 @@
 			.on('error', (error) => {
 			    document.getElementById("wait").innerHTML="failed";
 			    console.error;
-			})
-			.then( function(result){
-			    console.log(result);
 			});
 		}
             }
