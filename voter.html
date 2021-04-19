@@ -415,6 +415,35 @@
 					$( "#search" ).show();
 					$( "#contract_address" ).hide();
 					console.log("voting");
+					
+					Ballot.methods.totalCandidate().call({from: accountaddress})
+					.then(async function(result){
+					    console.log(result);
+					    num = result;
+					    for(var i = 0; i < num; i++){
+						var num = document.createTextNode(i+1);
+						var data1 = document.getElementById("candidate");
+ 						data1.appendChild(num);
+						
+						var symbol = document.createTextNode(". ");
+						var data2 = document.getElementById("candidate");
+ 						data2.appendChild(symbol);
+						
+						await Ballot.methods.CandidateName(i+1).call({from: accountaddress}, function(error, result){
+						    console.log(result);
+ 						    var name = document.createTextNode(result);
+						    var data3 = document.getElementById("candidate");
+ 						    data3.appendChild(name);
+						});
+						
+						var enter = document.createTextNode("");
+						var div = document.createElement('div');
+ 						div.appendChild(enter);
+ 						var data4 = document.getElementById("candidate");
+ 						data4.appendChild(div);
+					    }
+					});
+
 				}
 			});
 		}
