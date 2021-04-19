@@ -410,7 +410,10 @@
 	
             async function Deploy(){
 		var name = $("#name").val();
-		
+		if(name ==""){
+			alert("未輸入文字");
+		}
+		else{
 		ballotContract.deploy({
                     	data: bytecode,
                     	arguments: [name],
@@ -453,11 +456,15 @@
             	.then((newContractInstance) => {
                 	console.log(newContractInstance.options.address); // instance with the new contract address
          	});
+		}
             }
 
 	    function GetContract(){
 		contractAddress = $("#contract").val();
-		
+		if(contractAddress == ""){
+			alert("未輸入文字");
+		}
+		else{
 		Ballot = new web3.eth.Contract(abi, contractAddress);
 		
 		Ballot.methods.state().call({from: accountaddress})
@@ -482,6 +489,7 @@
 				document.getElementById("not_time").innerHTML="The Ballot is ended";
 			}
 		});
+		}
 	    }
 		
 // 	    function ShowAddress(){
@@ -492,7 +500,10 @@
 		Ballot = new web3.eth.Contract(abi, contractAddress);
 		var voterAddress = $("#voterAddress").val();
 		var voterName = $("#voterName").val();
-		
+		if((voterAddress == "")||(voterName == "")){
+			alert("未輸入文字");
+		}
+		else{
 		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
 		.then(function(gasAmount){
 		    	console.log(gasAmount);
@@ -513,12 +524,16 @@
 			console.log("confirmation");
 	    	})
 	    	.on('error', console.error);
+		}
 	    }
 	    
 	    function Addcadidate(){
 	    	Ballot = new web3.eth.Contract(abi, contractAddress);
 		var candidateName = $("#candidate").val();
-		
+		if(candidateName == ""){
+			alert("未輸入文字");
+		}
+		else{
 		Ballot.methods.addCandidate(candidateName).estimateGas({from: accountaddress})
 		.then(function(gasAmount){
 		    console.log(gasAmount);
@@ -539,6 +554,7 @@
 			console.log("confirmation");
 	    	})
 	    	.on('error', console.error);
+		}
 	    }
 		
             function Start(){
