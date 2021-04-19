@@ -21,7 +21,7 @@
             <p>建立人姓名:<input id="name" type="text" />
                 <button onclick="Deploy()">確定</button>
             </p>
-	    <div id="deploy_err"></div>
+	    <div id="deploy_wait"></div>
 	    <p>合約地址:<input id="contract" type="text" />
 	        <button onclick="GetContract()">確定</button>
 	    </p>
@@ -432,22 +432,22 @@
                 })
                 .on('transactionHash', (transactionHash) => { 
                     	console.log("transactionHash");
+			document.getElementById("deploy_wait").innerHTML="Wait a moment";
             	})
                 .on('receipt', (receipt) => {
                     	console.log("DONE" + receipt.contractAddress);
                     	contractAddress = receipt.contractAddress;
                     	console.log(contractAddress);
+			$( '#deploy').hide();
+			$( '#manager_action').show();
+			$( '#end').hide();
             	})
             	.on('confirmation', (confirmationNumber, receipt) => { 
                 	console.log("confirmation");
             	})
             	.then((newContractInstance) => {
                 	console.log(newContractInstance.options.address); // instance with the new contract address
-            	});
-		    
-                $( '#deploy').hide();
-                $( '#manager_action').show();
-                $( '#end').hide();
+         	});
             }
 
 	    function GetContract(){
