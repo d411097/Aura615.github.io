@@ -598,7 +598,10 @@
 	    	.on('confirmation', (confirmationNumber, receipt) => {
 			console.log("confirmation");
 	    	})
-	    	.on('error', console.error);
+	    	.on('error',  (error) => { 
+                    	console.error;
+			document.getElementById("end_wait").innerHTML="failed";
+                });
 	    }
         </script>
     </body>
