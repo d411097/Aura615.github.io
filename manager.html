@@ -21,6 +21,7 @@
             <p>建立人姓名:<input id="name" type="text" />
                 <button onclick="Deploy()">確定</button>
             </p>
+	    <div id="deploy_err"></div>
 	    <p>合約地址:<input id="contract" type="text" />
 	        <button onclick="GetContract()">確定</button>
 	    </p>
@@ -400,7 +401,6 @@
 			web3.eth.sendTransaction({/* ... */});
 		}
 		else {
-			alert("You should consider trying MetaMask!");
 			console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
 		}
 	});
@@ -413,7 +413,7 @@
                     	arguments: [name],
             	})
 		.estimateGas(function(err, gas){
-		    console.log(gas);
+		    	console.log(gas);
 		});
 		
                 ballotContract.deploy({
@@ -428,7 +428,7 @@
                     	txhash = transactionHash;
                 })
                 .on('error', (error) => { 
-                    	console.log("error");            
+                    	console.log("error");
                 })
                 .on('transactionHash', (transactionHash) => { 
                     	console.log("transactionHash");
@@ -500,8 +500,7 @@
 			console.log("transactionHash");
 	    	})
 	    	.on('receipt', (receipt) => {
-			console.log("receipt");            
-
+			console.log("receipt");
 	    	})
 	    	.on('confirmation', (confirmationNumber, receipt) => {
 			console.log("confirmation");
