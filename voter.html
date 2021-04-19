@@ -441,7 +441,7 @@
 		else{
 			Ballot.methods.voterRegister(accountaddress).call({from: accountaddress})
 			.then( function(result){
-			    console.log(result);
+			    console.log(result.voterName);
 			});
 			
 			Ballot.methods.doVote(num).estimateGas({from: accountaddress})
