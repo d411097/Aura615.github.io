@@ -442,33 +442,37 @@
 			Ballot.methods.voterRegister(accountaddress).call({from: accountaddress})
 			.then( function(result){
 			    console.log(result.voterName);
-			});
-			
-			Ballot.methods.doVote(num).estimateGas({from: accountaddress})
-			.then(function(gasAmount){
-			    console.log(gasAmount);
-			});
+			    if(result.voterName == ""){   
+			    	document.getElementById("wait").innerHTML="你沒有投票權";
+			    }
+			    else{
+				Ballot.methods.doVote(num).estimateGas({from: accountaddress})
+				.then(function(gasAmount){
+				    console.log(gasAmount);
+				});
 
-			Ballot.methods.doVote(num).send({
-			    from: accountaddress,
-			    gas: 1500000, 
-			    gasPrice: web3.eth.gasPrice       	    
-			})
-			.on('transactionHash', (hash) => {
-			    console.log("transactionHash");
-			    document.getElementById("wait").innerHTML="請稍後...";
-			})
-			.on('receipt', (receipt) => {
-			    console.log("receipt");
-			    $( "#search" ).hide();
-			    $( "#result" ).show();
-			})
-			.on('confirmation', (confirmationNumber, receipt) => {
-			    console.log("confirmation");
-			})
-			.on('error', (error) => {
-			    document.getElementById("wait").innerHTML="failed";
-			    console.error;
+				Ballot.methods.doVote(num).send({
+				    from: accountaddress,
+				    gas: 1500000, 
+				    gasPrice: web3.eth.gasPrice       	    
+				})
+				.on('transactionHash', (hash) => {
+				    console.log("transactionHash");
+				    document.getElementById("wait").innerHTML="請稍後...";
+				})
+				.on('receipt', (receipt) => {
+				    console.log("receipt");
+				    $( "#search" ).hide();
+				    $( "#result" ).show();
+				})
+				.on('confirmation', (confirmationNumber, receipt) => {
+				    console.log("confirmation");
+				})
+				.on('error', (error) => {
+				    document.getElementById("wait").innerHTML="failed";
+				    console.error;
+				});
+			    }
 			});
 		}
             }
