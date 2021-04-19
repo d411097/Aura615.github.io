@@ -465,6 +465,7 @@
 				$( '#deploy').hide();
 				$( '#manager_action').show();
 				$( '#end').hide();
+				document.getElementById("address").innerHTML=contractAddress;
 				console.log("creating");
 			}
 			else if(result == 1){
@@ -473,6 +474,7 @@
 				$( '#start').hide();
 				$( '#addvoter').hide();
 				$( '#addcandidate').hide();
+				document.getElementById("address").innerHTML=contractAddress;
 				console.log("voting");
 			}
 			else{
