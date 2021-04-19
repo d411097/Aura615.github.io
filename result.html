@@ -391,7 +391,7 @@
 					.then(async function(result){
 					    console.log(result);
 					    num = result;
-					    console.log("C");
+					    console.log("C2");
 					    for(var i = 0; i < num; i++){
 						Ballot.methods.CandidateName(i+1).call({from: accountaddress}, function(error, result){
 						    console.log(result);
@@ -401,14 +401,15 @@
 							Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
 							    console.log(result);
 							    var votes = document.createTextNode(result);
-							    var data2 = document.getElementById("result");
-							    data2.appendChild(votes);
+							    var data1 = document.getElementById("result");
+							    data1.appendChild(votes);
+							    var enter = document.createTextNode(" ");
+								var div = document.createElement('div');
+								div.appendChild(enter);
+								var data3 = document.getElementById("result");
+								data3.appendChild(div);
 							});
-							var enter = document.createTextNode(" ");
-							var div = document.createElement('div');
-							div.appendChild(enter);
-							var data3 = document.getElementById("result");
-							data3.appendChild(div);
+							
 						});
 
 //   						Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
