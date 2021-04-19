@@ -394,20 +394,20 @@
 					    for(var i = 0; i < num; i++){
 						Ballot.methods.CandidateName(i+1).call({from: accountaddress}, function(error, result){
 						    console.log(result);
-						    var name = document.createTextNode(result);
-							Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
-							    console.log(result);
-						    	    var votes = document.createTextNode(result);
-							    var enter = document.createTextNode(" ");
-							    var data1 = document.getElementById("result");
-						    	    data1.appendChild(name);
-							    var data2 = document.getElementById("result");
-						    	    data2.appendChild(votes);
-							    var div = document.createElement('div');
-							    div.appendChild(enter);
-							    var data3 = document.getElementById("result");
-							    data3.appendChild(div);
-							});
+// 						    var name = document.createTextNode(result);
+// 							Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
+// 							    console.log(result);
+// 						    	    var votes = document.createTextNode(result);
+// 							    var enter = document.createTextNode(" ");
+// 							    var data1 = document.getElementById("result");
+// 						    	    data1.appendChild(name);
+// 							    var data2 = document.getElementById("result");
+// 						    	    data2.appendChild(votes);
+// 							    var div = document.createElement('div');
+// 							    div.appendChild(enter);
+// 							    var data3 = document.getElementById("result");
+// 							    data3.appendChild(div);
+// 							});
 						});
 
  						Ballot.methods.CandidateVotes(i+1).call({from: accountaddress}, function(error, result){
