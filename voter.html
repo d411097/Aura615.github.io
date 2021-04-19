@@ -397,6 +397,11 @@
             });
            
             function Address(){
+		var addresserr = document.getElementById('address');
+		if(addresserr.value.lenght == 0){
+			alert('未輸入文字');
+		}
+		else{
                 contractAddress = $("#address").val();
                 Ballot = new web3.eth.Contract(abi, contractAddress);
 		
@@ -413,6 +418,7 @@
 				console.log("voting");
 			}
 		});
+		}
             }
             
             function Check(){
