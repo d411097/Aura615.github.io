@@ -52,8 +52,9 @@ nav li:hover {
     display: flex;
     justify-content: center;
 }
-h1{
-    text-align:center;
+h2{
+    font-weight:bold;
+    font-size: 1rem;
 }
 .button{
 
