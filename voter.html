@@ -19,6 +19,7 @@
         </nav>
 
         <div id="contract_address">
+	    請輸入要參加的投票的地址
 	    <p>合約地址:<input id="address" type="text" />
 	        <button onclick="Address()"> 確定</button>
 	    </p>
@@ -26,11 +27,13 @@
         </div>
 
         <div id="search">
+	    輸入參選人的編號，以查詢該編號參選人的姓名
             <h3>查詢參選人</h3>
             <p>輸入參選人編號:<input id="number" type="text"/>
                 <button onclick="Check()">查詢</button>
             </p>
             <div id="candidate"></div>
+	    輸入參選人的編號，以將您的票投給該編號的參選人
             <h3>投票</h3>
             <p>輸入參選人編號:<input id="number_vote" type="text"/>
                 <button onclick="Vote()">投票</button>
