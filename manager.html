@@ -31,8 +31,6 @@
 	</div>
         <div id="manager_action">
 	    <div>
-<!-- 		<button onclick="ShowAddress()">合約地址查詢</button> -->
-<!-- 		<div id="address"></div> -->
 		<p>合約地址 : <span id="address"></span></p>
 	    </div>
             <div id="addvoter">
@@ -495,10 +493,6 @@
 		});
 		}
 	    }
-		
-// 	    function ShowAddress(){
-// 		document.getElementById("address").innerHTML=contractAddress;
-// 	    }
 
 	    function Addvoter(){
 		Ballot = new web3.eth.Contract(abi, contractAddress);
@@ -613,7 +607,7 @@
 	    	})
 	    	.on('receipt', (receipt) => {
 			console.log("receipt");            
-			document.getElementById("start_wait").innerHTML="Success";
+			document.getElementById("end_wait").innerHTML="Success";
 	    	})
 	    	.on('confirmation', (confirmationNumber, receipt) => {
 			console.log("confirmation");
