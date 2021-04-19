@@ -27,11 +27,7 @@
         </div>
 
         <div id="search">
-	    <h2>輸入參選人的編號，以查詢該編號參選人的姓名</h2>
-            <h3>查詢參選人</h3>
-            <p>輸入參選人編號:<input id="number" type="text"/>
-                <button onclick="Check()">查詢</button>
-            </p>
+            <h3>參選人編號及名稱</h3>
             <div id="candidate"></div>
 	    <h2>輸入參選人的編號，以將您的票投給該編號的參選人</h2>
             <h3>投票</h3>
@@ -445,21 +441,6 @@
 					});
 
 				}
-			});
-		}
-            }
-            
-            function Check(){
-                Ballot = new web3.eth.Contract(abi, contractAddress);
-                var num = $("#number").val();
-		if(num == ""){
-			alert('未輸入文字');
-		}
-		else{
-			Ballot.methods.CandidateName(num).call({from: accountaddress})
-			.then( function(result){
-			    console.log(result);
-			    document.getElementById("candidate").innerHTML=result;
 			});
 		}
             }
