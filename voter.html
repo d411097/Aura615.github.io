@@ -34,9 +34,7 @@
             <h3>投票</h3>
             <p>輸入參選人編號:<input id="number_vote" type="text"/>
                 <button onclick="Vote()">投票</button>
-		<div id = "wait">
-		    <h3>請稍後...</h3>
-		</div>
+		<div id = "wait"></div>
             </p>
         </div>
         <div id ="result">
@@ -412,7 +410,6 @@
 				}
 				else{
 					$( "#search" ).show();
-					$( "#wait" ).hide();
 					$( "#contract_address" ).hide();
 					console.log("voting");
 				}
@@ -454,7 +451,7 @@
 			})
 			.on('transactionHash', (hash) => {
 			    console.log("transactionHash");
-			    $( "#wait" ).show();
+			    document.getElementById("wait").innerHTML="請稍後...";
 			})
 			.on('receipt', (receipt) => {
 			    console.log("receipt");
@@ -464,7 +461,10 @@
 			.on('confirmation', (confirmationNumber, receipt) => {
 			    console.log("confirmation");
 			})
-			.on('error', console.error);
+			.on('error', (error) => {
+			    document.getElementById("wait").innerHTML="failed";
+			    console.error;
+			});
 		}
             }
         </script>
