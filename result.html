@@ -5,7 +5,7 @@
         <title>VOTE</title>
         <link rel="stylesheet" href="home.css" />
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
     </head>
     <body>
         <nav>
@@ -14,7 +14,7 @@
                 <li><a href="voter.html">VOTE</a></li>
                 <li><a href="manager.html">MANGER</a></li>
                 <li><a href="result.html">RESULT</a></li>
-                </ul>
+            </ul>
         </nav>
         <div id="contract_address">
             <p>合約地址:<input id="address" type="text" />
@@ -22,11 +22,10 @@
             </p>
 	    <div id="not_time"></div>
         </div>
-	<div id="result">
+	<div id="Result">
 	    <h4>投票結果</h4>
-        </div>
-	
 	    <h2 id="result"></h2>
+        </div>
 	
         <script>
 		var abi = [
@@ -357,8 +356,8 @@
 		var accountaddress;
             	var web3 = new Web3();
 		$( document ).ready(function() {
-            $( "#result" ).hide();
-          });
+		    $( "#Result" ).hide();
+		});
 	    	window.addEventListener('load', async () => {
 			if (window.ethereum) {
 			    window.web3 = new Web3(ethereum);
@@ -423,7 +422,7 @@
 					});
 
 					$( "#contract_address" ).hide();
-					$( "#result" ).show();
+					$( "#Result" ).show();
 				}
 			});
 			
