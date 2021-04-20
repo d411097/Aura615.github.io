@@ -404,7 +404,7 @@
 			Ballot.methods.state().call({from: accountaddress})
 			.then(function(result){
 				if(result != 1){
-					document.getElementById("not_time").innerHTML="not time";
+					document.getElementById("not_time").innerHTML="不是投票時間";
 					console.log("not time");
 				}
 				else{
