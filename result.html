@@ -357,6 +357,7 @@
             	var web3 = new Web3();
 		$( document ).ready(function() {
 		    $( "#Result" ).hide();
+		    console.log("V2");
 		});
 	    	window.addEventListener('load', async () => {
 			if (window.ethereum) {
@@ -390,6 +391,9 @@
 				}
 				else{	
 					console.log("ended");
+					$( "#contract_address" ).hide();
+					$( "#Result" ).show();
+					
 					Ballot.methods.totalCandidate().call({from: accountaddress})
 					.then(async function(result){
 					    console.log(result);
@@ -420,9 +424,6 @@
  						data4.appendChild(div);
 					    }
 					});
-
-					$( "#contract_address" ).hide();
-					$( "#Result" ).show();
 				}
 			});
 			
