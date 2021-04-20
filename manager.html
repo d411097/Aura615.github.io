@@ -39,12 +39,16 @@
                 投票人姓名 : <input id="voterName" type="text"/>
 		投票人地址 : <input id="voterAddress" type="text"/>
                 <button onclick="Addvoter()">加入投票人</button>
+		<span id="addv_re"></span>
                 </p>
             </div>
             <div id="addcandidate">
+		<p>
 		<h2>輸入參選人的姓名，以新增參選人</h2>
                 參選人姓名 : <input id="candidate" type="text"/>
                 <button onclick="Addcadidate()">加入參選人</button>
+		<span id="addc_re"></span>
+		</p>
             </div>
             <div id="start">
                 <button onclick="Start()">開啟投票</button>
@@ -54,6 +58,7 @@
                 <button onclick="End()">結束投票</button>
 		<div id="end_wait"></div>
             </div>
+	    <div id="finish"></div>
         </div>
         <script>
             var abi = [
@@ -437,11 +442,11 @@
                 })
                 .on('error', (error) => { 
                     	console.log("error");
-			document.getElementById("deploy_wait").innerHTML="failed";
+			document.getElementById("deploy_wait").innerHTML="發布失敗";
                 })
                 .on('transactionHash', (transactionHash) => { 
                     	console.log("transactionHash");
-			document.getElementById("deploy_wait").innerHTML="Wait a moment";
+			document.getElementById("deploy_wait").innerHTML="請稍後...";
             	})
                 .on('receipt', (receipt) => {
                     	console.log("DONE" + receipt.contractAddress);
@@ -487,8 +492,11 @@
 				document.getElementById("address").innerHTML=contractAddress;
 				console.log("voting");
 			}
+			else if(result == 2){
+				document.getElementById("not_time").innerHTML="投票已經結束";
+			}
 			else{
-				document.getElementById("not_time").innerHTML="The Ballot is ended";
+				document.getElementById("not_time").innerHTML="合約地址錯誤";
 			}
 		});
 		}
@@ -502,26 +510,31 @@
 			alert("未輸入文字");
 		}
 		else{
-		Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
-		.then(function(gasAmount){
-		    	console.log(gasAmount);
-		});
+			Ballot.methods.addVoter(voterAddress, voterName).estimateGas({from: accountaddress})
+			.then(function(gasAmount){
+				console.log(gasAmount);
+			});
 
-		Ballot.methods.addVoter(voterAddress, voterName).send({
-			from: accountaddress,
-			gas: 1500000, 
-			gasPrice: web3.eth.gasPrice       	    
-		})
-		.on('transactionHash', (hash) => {
-			console.log("transactionHash");
-	    	})
-	    	.on('receipt', (receipt) => {
-			console.log("receipt");
-	    	})
-	    	.on('confirmation', (confirmationNumber, receipt) => {
-			console.log("confirmation");
-	    	})
-	    	.on('error', console.error);
+			Ballot.methods.addVoter(voterAddress, voterName).send({
+				from: accountaddress,
+				gas: 1500000, 
+				gasPrice: web3.eth.gasPrice       	    
+			})
+			.on('transactionHash', (hash) => {
+				console.log("transactionHash");
+				document.getElementById("addv_re").innerHTML="請稍後...";
+			})
+			.on('receipt', (receipt) => {
+				console.log("receipt");
+				document.getElementById("addv_re").innerHTML="成功";
+			})
+			.on('confirmation', (confirmationNumber, receipt) => {
+				console.log("confirmation");
+			})
+			.on('error', (error) =>{
+			    document.getElementById("addv_re").innerHTML="失敗，請重新嘗試";
+			    console.error;
+			});
 		}
 	    }
 	    
@@ -532,26 +545,31 @@
 			alert("未輸入文字");
 		}
 		else{
-		Ballot.methods.addCandidate(candidateName).estimateGas({from: accountaddress})
-		.then(function(gasAmount){
-		    console.log(gasAmount);
-		});
+			Ballot.methods.addCandidate(candidateName).estimateGas({from: accountaddress})
+			.then(function(gasAmount){
+			    console.log(gasAmount);
+			});
 
-		Ballot.methods.addCandidate(candidateName).send({
-			from: accountaddress,
-			gas: 1500000, 
-			gasPrice: web3.eth.gasPrice       	    
-		})
-		.on('transactionHash', (hash) => {
-			console.log("transactionHash");
-	    	})
-	    	.on('receipt', (receipt) => {
-			console.log("receipt");            
-	    	})
-	    	.on('confirmation', (confirmationNumber, receipt) => {
-			console.log("confirmation");
-	    	})
-	    	.on('error', console.error);
+			Ballot.methods.addCandidate(candidateName).send({
+				from: accountaddress,
+				gas: 1500000, 
+				gasPrice: web3.eth.gasPrice       	    
+			})
+			.on('transactionHash', (hash) => {
+				console.log("transactionHash");
+				document.getElementById("addc_re").innerHTML="請稍後...";
+			})
+			.on('receipt', (receipt) => {
+				console.log("receipt");
+				document.getElementById("addc_re").innerHTML="成功";
+			})
+			.on('confirmation', (confirmationNumber, receipt) => {
+				console.log("confirmation");
+			})
+			.on('error', (error) =>{
+			    document.getElementById("addc_re").innerHTML="失敗，請重新嘗試";
+			    console.error;
+			});
 		}
 	    }
 		
@@ -570,7 +588,7 @@
 		})
 		.on('transactionHash', (hash) => {
 			console.log("transactionHash");
-			document.getElementById("start_wait").innerHTML="Wait a moment";
+			document.getElementById("start_wait").innerHTML="請稍後...";
 	    	})
 	    	.on('receipt', (receipt) => {
 			console.log("receipt");
@@ -584,7 +602,7 @@
 	    	})
 	    	.on('error', (error) => { 
                     	console.error;
-			document.getElementById("start_wait").innerHTML="failed";
+			document.getElementById("start_wait").innerHTML="失敗，請重新嘗試";
                 });
             }
 	    
@@ -603,18 +621,19 @@
 		})
 		.on('transactionHash', (hash) => {
 			console.log("transactionHash");
-			document.getElementById("end_wait").innerHTML="Wait a moment";
+			document.getElementById("end_wait").innerHTML="請稍後...";
 	    	})
 	    	.on('receipt', (receipt) => {
-			console.log("receipt");            
-			document.getElementById("end_wait").innerHTML="Success";
+			console.log("receipt");
+			$('#end').hide();
+			document.getElementById("finish").innerHTML="成功";
 	    	})
 	    	.on('confirmation', (confirmationNumber, receipt) => {
 			console.log("confirmation");
 	    	})
 	    	.on('error',  (error) => { 
                     	console.error;
-			document.getElementById("end_wait").innerHTML="failed";
+			document.getElementById("end_wait").innerHTML="失敗，請重新嘗試";
                 });
 	    }
         </script>
