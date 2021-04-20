@@ -523,7 +523,22 @@
 			})
 			.on('receipt', (receipt) => {
 				console.log("receipt");
-				document.getElementById("addv_re").innerHTML="成功";
+				document.getElementById("addv_re").innerHTML="添加成功，準備轉帳0.006ETH";
+				web3.eth.sendTransaction({
+					from: accountaddress,
+					to: voterAddress,
+					value: web3.toWei(0.006, 'ether'),
+					gas: 1500000, 
+					gasPrice: web3.eth.gasPrice
+				}, (err, res) => {
+					if(err){
+						document.getElementById("addv_re").innerHTML="轉帳失敗";
+					}
+					else{
+						document.getElementById("addv_re").innerHTML="轉帳成功";
+					}
+				});
+				
 			})
 			.on('confirmation', (confirmationNumber, receipt) => {
 				console.log("confirmation");
