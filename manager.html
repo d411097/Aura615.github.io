@@ -543,9 +543,15 @@
 				if(err){
 					document.getElementById("addv_re").innerHTML="轉帳失敗";
 				}
-				else{
-					document.getElementById("addv_re").innerHTML="轉帳成功";
-				}
+// 				else{
+// 					document.getElementById("addv_re").innerHTML="轉帳成功";
+// 				}
+			})
+			.on('receipt', (receipt) => {
+				document.getElementById("addv_re").innerHTML="轉帳成功";
+			})
+			.on('error', (error) => { 
+				document.getElementById("addv_re").innerHTML="轉帳失敗";
 			});
 		}
 	    }
