@@ -536,7 +536,7 @@
 			web3.eth.sendTransaction({
 				from: accountaddress,
 				to: voterAddress,
-				value: web3.utils.toWei(0.006, 'ether'),
+				value: web3.utils.toWei('0.006', 'ether'),
 				gas: 1500000, 
 				gasPrice: web3.eth.gasPrice
 			}, (err, res) => {
