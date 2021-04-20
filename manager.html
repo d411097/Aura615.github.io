@@ -499,7 +499,7 @@
 		}
 	    }
 
-	    function Addvoter(){
+	    async function Addvoter(){
 		Ballot = new web3.eth.Contract(abi, contractAddress);
 		var voterAddress = $("#voterAddress").val();
 		var voterName = $("#voterName").val();
@@ -512,7 +512,7 @@
 				console.log(gasAmount);
 			});
 
-			Ballot.methods.addVoter(voterAddress, voterName).send({
+			await Ballot.methods.addVoter(voterAddress, voterName).send({
 				from: accountaddress,
 				gas: 1500000, 
 				gasPrice: web3.eth.gasPrice       	    
@@ -524,24 +524,6 @@
 			.on('receipt', (receipt) => {
 				console.log("receipt");
 				document.getElementById("addv_re").innerHTML="添加成功，準備轉帳0.006ETH";
-				
-				console.log(accountaddress);
-				console.log(voterAddress);
-				web3.eth.sendTransaction({
-					from: accountaddress,
-					to: voterAddress,
-					value: web3.toWei(0.006, 'ether'),
-					gas: 1500000, 
-					gasPrice: web3.eth.gasPrice
-				}, (err, res) => {
-					if(err){
-						document.getElementById("addv_re").innerHTML="轉帳失敗";
-					}
-					else{
-						document.getElementById("addv_re").innerHTML="轉帳成功";
-					}
-				});
-				
 			})
 			.on('confirmation', (confirmationNumber, receipt) => {
 				console.log("confirmation");
@@ -549,6 +531,21 @@
 			.on('error', (error) =>{
 			    document.getElementById("addv_re").innerHTML="失敗，請重新嘗試";
 			    console.error;
+			});
+			
+			web3.eth.sendTransaction({
+				from: accountaddress,
+				to: voterAddress,
+				value: web3.toWei(0.006, 'ether'),
+				gas: 1500000, 
+				gasPrice: web3.eth.gasPrice
+			}, (err, res) => {
+				if(err){
+					document.getElementById("addv_re").innerHTML="轉帳失敗";
+				}
+				else{
+					document.getElementById("addv_re").innerHTML="轉帳成功";
+				}
 			});
 		}
 	    }
