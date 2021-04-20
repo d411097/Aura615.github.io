@@ -524,6 +524,9 @@
 			.on('receipt', (receipt) => {
 				console.log("receipt");
 				document.getElementById("addv_re").innerHTML="添加成功，準備轉帳0.006ETH";
+				
+				console.log(accountaddress);
+				console.log(voterAddress);
 				web3.eth.sendTransaction({
 					from: accountaddress,
 					to: voterAddress,
