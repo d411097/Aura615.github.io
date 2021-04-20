@@ -458,6 +458,9 @@
 			    if(result.voterName == ""){   
 			    	document.getElementById("wait").innerHTML="你沒有投票權";
 			    }
+			    else if(result.voted){   
+			    	document.getElementById("wait").innerHTML="你已完成投票";
+			    }
 			    else{
 				Ballot.methods.doVote(num).estimateGas({from: accountaddress})
 				.then(function(gasAmount){
