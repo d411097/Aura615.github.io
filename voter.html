@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <title>VOTE</title>
         <link rel="stylesheet" href="home.css" />
-        
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     	<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
     </head>
@@ -27,6 +26,7 @@
         </div>
 
         <div id="search">
+	    <h3>總投票人數 : <span id="total_voter"></span></h3>
             <h3>參選人編號及名稱</h3>
             <h2 id="candidate"></h2>
 	    <h2>輸入參選人的編號，以將您的票投給該編號的參選人</h2>
@@ -407,6 +407,12 @@
 					$( "#search" ).show();
 					$( "#contract_address" ).hide();
 					console.log("voting");
+					
+					Ballot.methods.totalVoter().call({from: accountaddress})
+					.then(function(result){
+					    console.log(result);
+			    		    document.getElementById("total_voter").innerHTML=result;
+					});
 					
 					Ballot.methods.totalCandidate().call({from: accountaddress})
 					.then(async function(result){
