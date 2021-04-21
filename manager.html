@@ -406,13 +406,9 @@
 				//error
 			}
 		}
-		else if (typeof window.web3 !== 'undefined') {
-			window.web3 = new Web3(web3.currentProvider);
-			accountaddress = web3.givenProvider.selectedAddress;
-			ballotContract = new web3.eth.Contract(abi);
-		}
 		else {
-			console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+			console.log("no MetaMask");
+			alert("請安裝MetaMask");
 		}
 	});
 	
