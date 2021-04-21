@@ -406,15 +406,10 @@
 				//error
 			}
 		}
-		else if (window.web3) {
-			if (web3.currentProvider.isMetaMask == true) {
-				window.web3 = new Web3(web3.currentProvider);
-				accountaddress = web3.givenProvider.selectedAddress;
-				ballotContract = new web3.eth.Contract(abi);
-			} 
-			else{
-				alert("請安裝MetaMask");
-			}
+		else if (typeof window.web3 !== 'undefined') {
+			window.web3 = new Web3(web3.currentProvider);
+			accountaddress = web3.givenProvider.selectedAddress;
+			ballotContract = new web3.eth.Contract(abi);
 		}
 		else {
 			console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
