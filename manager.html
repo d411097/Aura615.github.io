@@ -408,7 +408,8 @@
 		}
 		else if (window.web3) {
 			window.web3 = new Web3(web3.currentProvider);
-			web3.eth.sendTransaction({/* ... */});
+			accountaddress = web3.givenProvider.selectedAddress;
+			ballotContract = new web3.eth.Contract(abi);
 		}
 		else {
 			console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
